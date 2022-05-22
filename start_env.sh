@@ -1,3 +1,3 @@
 #!/bin/sh
 
-nix shell "nixpkgs#"{ghc,cabal-install,zlib}
+nix shell "nixpkgs#"{haskell.compiler.ghc8107,cabal-install,zlib}

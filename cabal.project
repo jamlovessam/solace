@@ -1,0 +1,5 @@
+packages:
+  solace.cabal
+
+package web3
+flags: +tls

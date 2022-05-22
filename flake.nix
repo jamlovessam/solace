@@ -3,9 +3,11 @@
 
   outputs = { self, nixpkgs }: 
   let
+    system = "x86_64-linux";
     pkgs = import nixpkgs {
-      system = "x86_64-linux";
+      inherit system;
     };
+
     hs = pkgs.haskell.packages.ghc8107;
     myPackage = hs.callCabal2nix "solace" ./. { };
   in
@@ -23,7 +25,10 @@
         hs.ghcid
         hs.time
       ];
-      libraries = with pkgs; [ zlib ];
+      libraries = with pkgs; [ 
+      	zlib
+	nixFlakes
+      ];
       libraryPath = "${pkgs.lib.makeLibraryPath libraries}";
     in pkgs.mkShell {
       buildInputs = tools ++ libraries;
